@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <style>
+        /* 重置全部样式*/
+        * {
+            color: #000;
+            font-size: 12px;
+            font-family: 宋体;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            border: 0px;
+        }
+
+        .qc {
+            clear: both;
+        }
+        /* 重置结束*/
+
+        #app {
+            width: 480px;
+            margin: 0px auto;
+            margin-top: 20px;
+            border: 1px solid #000000;
+        }
+        .px{
+            width: 440px;
+            font-weight:bold;
+            line-height: 40px;
+            color: blue;
+            margin: 0px auto;
+        }
+
+        li {
+            word-wrap: break-word;
+            margin: 10px 0px;
+            border: 1px solid blue;
+            line-height: 20px;
+        }
+
+        .sp {
+            text-align: center;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            border-radius: 5px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ffe082, #ffc800);
+            float: right;
+        }   
+
+        .ddd {
+            width: 440px;
+            margin: 10px auto;
+        }
+
+        .icon-smiling {
+            color: orange;
+            font-size: 20px;
+        }
+
+        .icon-pic-line {
+            color: greenyellow;
+            font-size: 25px;
+        }
+
+        .icon-shipin-tianchong {
+            color: blue;
+            font-size: 20px;
+        }
+
+        .icon-huati {
+            color: blue;
+            font-size: 20px;
+        }
+
+        .icon-shandian {
+            color: #ffe082;
+            font-size: 20px;
+        }
+
+        .spp{
+            font-size: 16px;
+        }
+    </style>
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p class="px">遇到有趣的事情?分享给大家吧! <a href="#" style="float: right;color: coral;">热门微博</a></p>
+        <p class="qc"></p>
+        <textarea v-model="msg" cols="70" rows="10" style="display: block;margin:0px auto;resize:none;"></textarea>
+        <div class="ddd">
+            <a href="#"><span class="iconfont icon-smiling"></span>
+                <a class="spp">表情</a>
+            </a>
+            <a href="#"><span class="iconfont icon-pic-line"></span>
+                <span class="spp">图片</span>
+            </a>
+            <a href="#"><span class="iconfont icon-shipin-tianchong"></span>
+                <span class="spp">视频</span>
+            </a>
+            <a href="#"><span class="iconfont icon-huati"></span>
+                <span class="spp">话题</span>
+            </a>
+            <a href="#"><span class="iconfont icon-shandian"></span>
+                <span class="spp">头条文章</span>
+            </a>
+            <span @click="add()" class="sp">发帖</span>
+            <p class="qc"></p>
+        </div>
+        <ul class="ddd">
+            <li v-for="(v,i) in test">
+                <p @click="del(i)" style="float: right;">删除</p>
+                <p>{{v}}</p>
+                <p class="qc"></p>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            test: [
+            ],
+            msg: ''
+        },
+        methods: {
+            add: function () {
+                //判断输入值是否为空！
+                if (this.msg.trim() != "") {
+                    this.test.unshift(this.msg);
+                } else {
+                    alert("输入不能为空");
+                }
+            },
+            //删除一个元素
+            del: function (i) {
+                this.test.splice(i, 1);
+            }
+        }
+    });
+</script>
+</html>

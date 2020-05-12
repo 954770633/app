@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 重置全部样式*/
+        * {
+            color: #000;
+            font-size: 14px;
+            font-family: 宋体;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        img {
+            border: 0px;
+        }
+
+        .qc {
+            clear: both;
+        }
+        /* 重置结束*/
+        #app{
+            width: 520px;
+            margin:0px auto;
+            margin-top: 30px;
+        }
+        .tab{
+            width: 520px;
+            margin: 0px auto;
+            padding: 30px 0px;
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        商品名称:<input type="text" name="name" v-model="name"/>
+        商品价格:<input type="text" name="price" v-model="price" />
+        <button @click="add()">增加商品</button>
+        <table class="tab">
+            <template v-for="(x,index) in good">
+                <tr v-if="index==0">
+                    <td v-for="t in title">{{t}}</td>
+                </tr>
+                <br />
+                <tr>
+                    <td>{{index+1}}</td>
+                    <td>{{x.name}}</td>
+                    <td>{{x.price}}</td>
+                    <td><span @click="del(index)">删除</span></td>
+                </tr>
+            </template>
+        </table>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            title:[
+                "商品序号",
+                "商品名称",
+                "商品价格",
+                "删除商品"
+            ],
+            good:[
+            {name:'辣条',price:'5'}
+            ],
+            name:"",
+            price:""
+        },
+        methods:{
+            add:function(){
+                let str = {name:this.name,price:this.price};
+                this.good.unshift(str);
+            },
+            del:function(i){
+                this.good.splice(i,1);
+            }
+        }
+    })
+</script>
+</html>
